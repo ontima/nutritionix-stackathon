@@ -18,11 +18,13 @@
 </div>
 
   <div class="row">
-    <div class="col-md-12">
-  <h2 class="ui-bar ui-bar-a" ng-show="results">{{restaurantName}}</h2>   
+    <div class="col-md-12" ng-show="results">
+  <h2 class="ui-bar ui-bar-a" >{{restaurantName}}</h2>   
   <div class="ui-body">
-    <ul data-role="listview" data-split-theme="d">
-      <li ng-repeat="item in menuItems" >
+    <ul data-role="listview" data-split-theme="d"> 
+       Max Cal: <input type="text" ng-model="maxCal">
+      <br>
+      <li ng-repeat="item in menuItems | filter: filterByCal" >
         <a ui-sref="item({id: item._id})">{{item.fields.item_name}} - {{item.fields.nf_calories + ' calories'}}</a>
       </li>
     </ul>                    

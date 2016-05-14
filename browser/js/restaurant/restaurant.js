@@ -25,6 +25,7 @@ app.config(function ($stateProvider) {
 
 app.controller('RestaurantCtrl', function ($scope, $state, RestaurantFactory) {
 
+    $scope.maxCal = 1000;
     $scope.findRest = function (restName) {
     	console.log("inside controller")
         $scope.error = null;
@@ -49,19 +50,9 @@ app.controller('RestaurantCtrl', function ($scope, $state, RestaurantFactory) {
 
     };
 
-//     $scope.maxCalFilter = function(maxCal){
-//     	console.log("inside maxCalFilter");
-//   //   	var filtered = [];
-// 		// for (var i=0; i<$scope.menuItems.length; i++) {
-// 		// 	var item = $scope.menuItems[i];
-// 		// 	if (item.fields.nf_calories <= maxCal) {
-// 		// 		filtered.push(item);
-// 		// 	}
-// 		// }
-// 		// $scope.menuItems = filtered;
-// 		// console.log("after filtering: ", filtered);
-// 		// $scope.apply();
-//     };
+    $scope.filterByCal = function(item){
+        return item.fields.nf_calories <= $scope.maxCal;
+    }
 
 });
 
