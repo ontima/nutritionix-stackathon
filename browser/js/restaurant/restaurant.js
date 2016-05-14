@@ -7,14 +7,28 @@ app.config(function ($stateProvider) {
 });
 
 
+app.config(function ($stateProvider) {
+    $stateProvider.state('item', {
+        url: '/:id',
+        templateUrl: 'js/restaurant/demo.html',
+        controller: function($scope, label){
+            $scope.label = label;
+        },
+        resolve: {
+            label: function($stateParams, RestaurantFactory){
+                return RestaurantFactory.getItemById($stateParams.id);
+            }
+        }
+    });
+});
+
+
 app.controller('RestaurantCtrl', function ($scope, $state, RestaurantFactory) {
 
     $scope.findRest = function (restName) {
     	console.log("inside controller")
         $scope.error = null;
         $scope.results = null;
-        $scope.maxCal = 10000;
-
 
         RestaurantFactory.findRestId(restName) 
         .then(function(restaurant){
@@ -26,31 +40,49 @@ app.controller('RestaurantCtrl', function ($scope, $state, RestaurantFactory) {
         		$scope.restaurantName = restaurant.fields.name;
         		$scope.results = true;
         		$scope.menuItems = items.hits;
+        		// RestaurantFactory.getYelp(restName)
+        		// .then(function(yelpResults){
+        		// 	console.log("yelpResults: ", yelpResults);
+        		// })
         	})
         })
 
     };
 
-});
-
-
-app.filter('calorieFilter', function(){
-	console.log("insider app filter");
-	// return function(item){
-	// 	console.log(item);
-	// 	return item.filter(function(i){
-	// 		return i.fields.nf_calories <= maxCal;
-	// 	});
-	// };
-	return function(items, maxCal){
-		var filtered = [];
-		for (var i=0; i<items.length; i++) {
-			var item = items[i];
-			if (item.fields.nf_calories <= maxCal) {
-				filtered.push(item);
-			}
-		}
-		return filtered;
-	};
+//     $scope.maxCalFilter = function(maxCal){
+//     	console.log("inside maxCalFilter");
+//   //   	var filtered = [];
+// 		// for (var i=0; i<$scope.menuItems.length; i++) {
+// 		// 	var item = $scope.menuItems[i];
+// 		// 	if (item.fields.nf_calories <= maxCal) {
+// 		// 		filtered.push(item);
+// 		// 	}
+// 		// }
+// 		// $scope.menuItems = filtered;
+// 		// console.log("after filtering: ", filtered);
+// 		// $scope.apply();
+//     };
 
 });
+
+
+// app.filter('calorieFilter', function(){
+// 	console.log("insider app filter");
+// 	return function(item){
+// 		console.log(item);
+// 		return item.filter(function(i){
+// 			return i.fields.nf_calories <= maxCal;
+// 		});
+// 	};
+// 	// return function(items, maxCal){
+// 	// 	var filtered = [];
+// 	// 	for (var i=0; i<items.length; i++) {
+// 	// 		var item = items[i];
+// 	// 		if (item.fields.nf_calories <= maxCal) {
+// 	// 			filtered.push(item);
+// 	// 		}
+// 	// 	}
+// 	// 	return filtered;
+// 	// };
+
+// });

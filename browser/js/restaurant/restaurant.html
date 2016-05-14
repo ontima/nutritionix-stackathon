@@ -1,4 +1,7 @@
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
 <form id="rest-form" name="restForm" ng-submit="findRest(restName)">
 
     <alert type="danger" ng-show="error">
@@ -11,15 +14,31 @@
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
+</div>
+</div>
 
-
+  <div class="row">
+    <div class="col-md-12">
   <h2 class="ui-bar ui-bar-a" ng-show="results">{{restaurantName}}</h2>   
-  <div class="ui-body" ng-controller='RestaurantCtrl'>
+  <div class="ui-body">
     <ul data-role="listview" data-split-theme="d">
-    	Max calorie: <input type="text" ng-model="maxCalorie" ng-show="results">
-      <li ng-repeat="item in menuItems" | calorieFilter:maxCalorie>
-        <a>{{item.fields.item_name}} - {{item.fields.nf_calories + ' calories'}}</a>
+      <li ng-repeat="item in menuItems" >
+        <a ui-sref="item({id: item._id})">{{item.fields.item_name}} - {{item.fields.nf_calories + ' calories'}}</a>
       </li>
     </ul>                    
   </div>
 </div>
+</div>
+</div>
+
+
+
+
+<!-- <form id="cal-form" name="calForm" ng-submit="maxCalFilter(maxCalorie)">
+
+    <div class="form-group">
+        <label for="maxCalorie">Max Calorie</label>
+        <input type="text" ng-model="maxCalorie" class="form-control" id="maxCalorie" placeholder="Enter max calorie">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form> -->

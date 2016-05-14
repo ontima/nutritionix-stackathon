@@ -1,0 +1,67 @@
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+			<div class="row">
+			
+			</div>
+
+			<div class="row">
+				<div class="col-md-4">
+					<div id="test2"></div>
+				</div>
+				<div class="col-md-8" ng-hide=true>
+	
+<pre id="pre2">
+$('#test2').nutritionLabel({
+	'showServingUnitQuantity' : false,
+	'itemName' : '{{label.item_name}}',
+	'ingredientList' : '{{label.item_name}}',
+
+	'decimalPlacesForQuantityTextbox' : 2,
+	'valueServingUnitQuantity' : 1,
+
+	'allowFDARounding' : true,
+	'decimalPlacesForNutrition' : 2,
+
+	'showPolyFat' : false,
+	'showMonoFat' : false,
+	  'showVitaminA' : false,
+  'showVitaminC' : false,
+  'showCalcium' : false,
+  'showIron' : false,
+
+	'valueCalories' : 920,
+	'valueFatCalories' : 560,
+	'valueTotalFat' : 62,
+	'valueSatFat' : 30,
+	'valueTransFat' : 0,
+	'valueCholesterol' : 180,
+	'valueSodium' : 1310,
+	'valueTotalCarb' : 40,
+	'valueFibers' : 2,
+	'valueSugars' : 9,
+	'valueProteins' : 51
+});
+</pre>
+			
+				</div>
+			</div><br /><br /><br />
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="../../../bower_components/nutrition-label-jquery-plugin/dist/js//nutritionLabel-min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	eval( eval( $('#pre2').html() ) );
+});
+</script>
+
